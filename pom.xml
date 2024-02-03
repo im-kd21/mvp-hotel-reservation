@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mvp</groupId>
 	<artifactId>hotel-booking-sys</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>hotel-booking-sys</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -56,16 +56,15 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>1.11.0</version> <!-- Use the latest version -->
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<encoding>UTF-8</encoding>
+					<schemaVersion>V1</schemaVersion>
+					<subscriptionId>c8c6f4a8-117b-419c-9a1f-9ce584069d0b</subscriptionId>
+					<resourceGroup>mvp-booking-instance</resourceGroup>
+					<appName>hotel-booking-sys</appName>
+					<!-- Other configurations -->
 				</configuration>
 			</plugin>
 		</plugins>
