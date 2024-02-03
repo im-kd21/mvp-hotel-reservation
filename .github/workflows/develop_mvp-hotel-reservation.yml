@@ -48,7 +48,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'hotel-booking-sys'
+          app-name: 'mvp-hotel-reservation'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DE54B44021E49B6BD0B000B4AA29B39 }}
           package: '*.jar'
