@@ -1,27 +1,25 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - develop
 
 pool:
-  vmImage: windows-latest
+  vmImage: 'windows-latest'
 
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+# Add your build steps here
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Free Trial(c8c6f4a8-117b-419c-9a1f-9ce584069d0b)'
     appType: 'webApp'
     appName: 'hotel-booking-system'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(System.ArtifactsDirectory)/drop/**/*.zip'
     deploymentMethod: 'auto'
