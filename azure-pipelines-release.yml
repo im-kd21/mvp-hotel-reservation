@@ -18,14 +18,20 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Free Trial(c8c6f4a8-117b-419c-9a1f-9ce584069d0b)'
     appType: 'webApp'
     appName: 'hotel-booking-system'
-    deployToSlotOrASE: true
-    resourceGroupName: 'hotel-booking-group'
-    slotName: 'production'
-    package: '$(System.ArtifactsDirectory)/**/*.zip'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     deploymentMethod: 'auto'
