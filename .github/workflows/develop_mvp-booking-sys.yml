@@ -2,11 +2,6 @@ name: Build and deploy JAR app to Azure Web App - hotel-booking-system
 
 on:
   push:
-    env:
-    ASC_PACKAGE_PATH: ${{ github.workspace }}
-    JAVA_VERSION: 17
-    AZURE_SUBSCRIPTION: c8c6f4a8-117b-419c-9a1f-9ce584069d0b
-
     branches:
       - develop
   workflow_dispatch:
@@ -21,10 +16,10 @@ jobs:
       - name: Set up JDK 17 version
         uses: actions/setup-java@v1
         with:
-          java-version: ${{ env.JAVA_VERSION }}
+          java-version: 17
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install -U
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -49,10 +44,8 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
-          service-name: 'mvp-booking-sys'
           app-name: 'hotel-booking-system'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5741BFF7F6FB4ACCA6D63D1EF058AA97 }}
           use-staging-deployment: false
-          package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar
+          package: .jar
