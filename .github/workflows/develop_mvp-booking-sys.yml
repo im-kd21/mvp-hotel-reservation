@@ -1,3 +1,4 @@
+
 name: Build and deploy JAR app to Azure Web App - hotel-booking-system
 
 on:
@@ -47,5 +48,4 @@ jobs:
           app-name: 'hotel-booking-system'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5741BFF7F6FB4ACCA6D63D1EF058AA97 }}
-          use-staging-deployment: false
           package: .jar
