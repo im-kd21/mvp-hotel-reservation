@@ -7,7 +7,7 @@ trigger:
 - develop
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
 - script: echo Hello, world!
@@ -26,5 +26,5 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'hotel-booking-group'
     slotName: 'production'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '*.jar'
     deploymentMethod: 'auto'
