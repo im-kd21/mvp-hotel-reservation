@@ -48,4 +48,4 @@ jobs:
           app-name: 'hotel-booking-system'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5741BFF7F6FB4ACCA6D63D1EF058AA97 }}
-          package: .jar
+          package: '*.jar'
