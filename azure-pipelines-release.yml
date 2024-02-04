@@ -18,6 +18,7 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Free Trial(c8c6f4a8-117b-419c-9a1f-9ce584069d0b)'
@@ -26,5 +27,5 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'hotel-booking-group'
     slotName: 'production'
-    package: '*.jar'
+    package: '$(System.ArtifactsDirectory)/**/*.zip'
     deploymentMethod: 'auto'
