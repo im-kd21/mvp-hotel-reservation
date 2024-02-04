@@ -21,5 +21,8 @@ steps:
     azureSubscription: 'Free Trial(c8c6f4a8-117b-419c-9a1f-9ce584069d0b)'
     appType: 'webApp'
     appName: 'hotel-booking-system'
-    package: '$(System.ArtifactsDirectory)/drop/**/*.zip'
+    deployToSlotOrASE: true
+    resourceGroupName: 'hotel-booking-group'
+    slotName: 'production'
+    package: '$(Build.ArtifactStagingDirectory)/drop/**/*.zip'
     deploymentMethod: 'auto'
